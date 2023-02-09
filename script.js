@@ -5,16 +5,15 @@ var uppercaseChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
 var numbersChars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var symbolsChar = ['!', '@', '#', '$', '%', '&', '*', '(', ')'];
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-
 // WHEN I click the button to generate a password
 // THEN I am presented with a series of prompts for password criteria
 // WHEN prompted for password criteria
 // THEN I select which criteria to include in the password
 // WHEN prompted for the length of the password
 // THEN I choose a length of at least 8 characters and no more than 128 characters
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
 
   function generatePassword() {
     var passwordLength = prompt("How long would you like your password to be?");
@@ -60,6 +59,12 @@ if (symbols){
         passwordLibrary = passwordLibrary.concat(symbolsChars);
     }
 
+var generatedPassword = "";
+for (var i = 0; i < passwordLength; i++){
+    var randomCharacter = passwordLibrary [ Math.floor(Math.random() * passwordLibrary.length)];
+    generatedPassword = generatedPassword + randomCharacter;
+}
+
 // Write password to the #password input
 function writePassword() {
     var password = generatePassword();
@@ -76,8 +81,4 @@ generateBtn.addEventListener("click", writePassword);
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
 
-var generatedPassword = "";
-for (var i = 0; i < passwordLength; i++){
-    var randomCharacter = passwordLibrary [ Math.floor(Math.random() * passwordLibrary.length)];
-    generatedPassword = generatedPassword + randomCharacter;
-}
+return generatePassword;
