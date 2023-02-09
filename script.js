@@ -44,8 +44,10 @@ function writePassword() {
 
 // WHEN asked for character types to include in the password
 // THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-
-
+var lowercase = confirm("Would you like lowercase letters in your password?");
+var uppercase = confirm("Would you like uppercase letters in your password?");
+var numbers = confirm("Would you like numbers letters in your password?");
+var symbols = confirm("Would you like symbols letters in your password?");
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
