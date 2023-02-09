@@ -5,18 +5,10 @@ var uppercaseChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
 var numbersChars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var symbolsChar = ['!', '@', '#', '$', '%', '&', '*', '(', ')'];
 
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-}
 // WHEN I click the button to generate a password
 // THEN I am presented with a series of prompts for password criteria
 // WHEN prompted for password criteria
@@ -48,12 +40,33 @@ if (
     uppercase === false &&
     numbers === false &&
     symbols === false &&
-){
+) {
 alert("Must choose at least one character type");
 return null;
 }
 console.log(lowercase,uppercase,numbers,symbols);
 
+var passwordLibrary = [];
+if (uppercase){
+    passwordLibrary = passwordLibrary.concat(uppercaseChars);
+}
+if (lowercase){
+    passwordLibrary = passwordLibrary.concat(lowercaseChars);
+}
+if (numbers){
+        passwordLibrary = passwordLibrary.concat(numbersChars);
+}
+if (symbols){
+        passwordLibrary = passwordLibrary.concat(symbolsChars);
+    }
+
+// Write password to the #password input
+function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.value = password;
+  }
 // WHEN all prompts are answered
 // THEN a password is generated that matches the selected criteria
 
@@ -62,3 +75,9 @@ generateBtn.addEventListener("click", writePassword);
 
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
+
+var generatedPassword = "";
+for (var i = 0; i < passwordLength; i++){
+    var randomCharacter = passwordLibrary [ Math.floor(Math.random() * passwordLibrary.length)];
+    generatedPassword = generatedPassword + randomCharacter;
+}
