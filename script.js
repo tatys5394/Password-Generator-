@@ -15,10 +15,10 @@ var symbolsChars = ["!", "@", "#", "$", "%", "&", "*", "(", ")"];
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
-var generatedPassword = "";
 
 function generatePassword() {
     var result = [];
+    var generatedPassword = "";
   var passwordLength = prompt("How long would you like your password to be?");
 
   if ((passwordLength < 8 || passwordLength > 128)) {
@@ -45,25 +45,26 @@ function generatePassword() {
     alert("Must choose at least one character type");
     return null;
   }
-  console.log(lowercase, uppercase, numbers, symbols);
+  
 
   var passwordLibrary = [];
   if (uppercase) {
+    passwordLibrary.concat(uppercaseChars);
     passwordLibrary = passwordLibrary.concat(uppercaseChars);
-    console.log(passwordLibrary);
   }
   if (lowercase) {
+    passwordLibrary.concat(lowercaseChars);
     passwordLibrary = passwordLibrary.concat(lowercaseChars);
-    console.log(passwordLibrary);
   }
   if (numbers) {
+    passwordLibrary.concat(numbersChars);
     passwordLibrary = passwordLibrary.concat(numbersChars);
-    console.log(passwordLibrary);
   }
   if (symbols) {
+    passwordLibrary.concat(symbolsChars);
     passwordLibrary = passwordLibrary.concat(symbolsChars);
-    console.log(passwordLibrary);
   }
+    console.log(passwordLibrary);
 
   for (var i = 0; i < passwordLength; i++) {
     var randomCharacter =
@@ -77,7 +78,7 @@ function generatePassword() {
 }
 // Write password to the #password input
 function writePassword() {
-  var password = generatedPassword();
+  var password = generatePassword ();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
